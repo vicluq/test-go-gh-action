@@ -2,13 +2,18 @@ package main
 
 import (
 	"context"
-	"log"
 
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-func handler(ctx *context.Context, Input interface{}) {
-	log.Fatalf("Deployed to lambda successfully")
+type RetMsg struct {
+	Message string `json:"message"`
+}
+
+func handler(ctx *context.Context, Input interface{}) RetMsg {
+	return RetMsg{
+		Message: "Action Worked.",
+	}
 }
 
 func main() {
