@@ -13,7 +13,7 @@ type RetMsg struct {
 func handler(ctx context.Context, Input interface{}) (RetMsg, error) {
 	return RetMsg{
 		Message: "Action Worked.",
-	}
+	}, nil
 }
 
 func main() {
