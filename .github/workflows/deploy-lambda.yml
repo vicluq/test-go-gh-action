@@ -38,7 +38,7 @@ jobs:
         run: |
           GOOS=linux GOARCH=amd64 go build -o bootstrap ${{ env.ENTRY_FILE }}
           chmod +x bootstrap
-          zip -f deploy.zip bootstrap
+          zip deploy.zip bootstrap
       
       - name: Check if lambda exists
         id: lambda_status
