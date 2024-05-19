@@ -17,7 +17,7 @@ jobs:
     environment: production
     strategy:
       matrix:
-        service_folders: ${{ fromJSON(env.SERVICE_FOLDERS) }}
+        service_folders: ${{ env.SERVICE_FOLDERS }}
 
     steps:  
       - name: Checkout
