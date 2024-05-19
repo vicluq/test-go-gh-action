@@ -28,7 +28,11 @@ jobs:
         id: deployable
         continue-on-error: true
         run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep "^(${{matrix.service_folders}}|shared)\/"  
-         
+  
+      - name: Get check status
+        id: check_status
+        run: echo $?
+      
       - name: Config AWS credentials
         uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
         if: steps.deployable.outcome == 'success'
