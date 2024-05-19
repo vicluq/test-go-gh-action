@@ -26,6 +26,7 @@ jobs:
 
       - name: Check if lambda files have changed
         id: deployable
+        continue-on-error: true
         run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep "^(${{matrix.service_folders}}|shared)\/"  
          
       - name: Config AWS credentials
