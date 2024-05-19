@@ -7,6 +7,7 @@ env:
   AWS_REGION: us-east-1 # Change to yours
   ENTRY_FILE: main.go # Change to yours
   FUNCTION_NAME: ${GITHUB_REPOSITORY#*/}
+  SERVICE_FOLDER: TEST
     
 permissions:
   contents: read
@@ -19,6 +20,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+    
+      - name: Check if lambda files have changed
+        run: |
+          git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 
+          | grep ^${{env.SERVICE_FOLDER}}\/|^shared\/
 
       - name: Config AWS credentials
         uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
